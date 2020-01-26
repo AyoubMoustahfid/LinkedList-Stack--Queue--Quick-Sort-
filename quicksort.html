@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quick Sort</title>
+</head>
+<body>
+<div id="output"></div>
+</body>
+
+<script>
+	let out = document.getElementById('output');
+const data = [3,43,2,55,1,9,0,5,4,2,3,1];
+
+function quickSort(input){
+  //single index array check;
+  if(input.length < 1 ){
+    return input;
+  }
+  //quick sort
+  const pivot = input[Math.floor(input.length / 2)];
+  const left = [];
+  const right = [];
+  const sorted = [];
+  for(let i = 0;i<input.length;i++){
+    if( input[i] == pivot ){
+      sorted.push(input[i]);
+     }else if( input[i] < pivot){
+       left.push(input[i]);
+     }else{
+       right.push(input[i]);
+     }
+  }
+  //recursive and joining left and right arrays;
+  return quickSort(left).concat(sorted, quickSort(right));
+}
+out.innerHTML = quickSort(data);
+
+</script>
+
+</html>

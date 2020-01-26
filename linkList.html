@@ -1,0 +1,90 @@
+<!DOCTYPE html> 
+<html>
+<head>
+
+
+</head>
+<body>
+<h1> linked List</h1>
+<input type="text" id="txt1">
+<button type="button" id="btn" onclick="btn()">POP</button>
+<button type="button" id="btnpush" onclick="btnpush()">PUSH</button>
+<ul id="cont"></ul>
+
+<script>
+ class StackNode{
+ 	constructor(data, next){
+ 		this.data = data
+ 		this.next = next
+ 	}
+ }
+
+ class LinkedStack{
+ 	constructor(){
+ 		this.top = null
+ 		this.size = 0
+ 	}
+
+ 	push(value){
+ 		let node =new StackNode(value);
+ 		node.next =this.top;
+ 		this.top = node;
+ 		this.size++;
+
+ 	}
+ 	
+ 	isEmpty(){
+ 		return this.top === null;
+ 	}
+
+ 	
+
+ 	pop(){
+ 		let result = this.top;
+ 		this.top = this.top.next;
+ 		this.size--;
+ 		return result.data;
+ 	}
+
+ 	peek(){
+ 		return this.top.data;
+ 	}
+ 	showList(){
+ 		let current = this.top;
+ 		let list = "";
+ 		while(current){
+ 			list += "<li>"+current.data+"</li>";
+ 			current = current.next;
+ 		}
+ 		return list;
+ 	}
+
+ }
+
+
+let ss = new LinkedStack();
+ss.push(55);
+ss.push(44);
+ss.push(33);
+ss.push(22);
+ss.push(11);
+
+function btn(){
+	ss.pop()
+	document.getElementById('cont').innerHTML = ss.showList();
+}
+
+function btnpush(){
+	var txt=document.getElementById('txt1').value;
+	ss.push(txt);
+	document.getElementById('cont').innerHTML = ss.showList();
+}
+
+   
+  document.getElementById('cont').innerHTML += ss.showList();
+
+
+</script>
+
+</body>
+</html>
